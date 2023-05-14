@@ -1,0 +1,32 @@
+{
+  "name": "326-dubblestuforeo",
+  "version": "1.0.0",
+  "description": "CS326 Final Project",
+  "main": "main.js",
+  "type": "module",
+  "directories": {
+    "docs": "docs"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "express-session": "^1.17.2",
+    "mongodb": "^4.5.0",
+    "morgan": "^1.10.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/noahjkrueger/326-dubblestuforeo.git"
+  },
+  "author": "Noah Krueger, Diganta Mainali, Kenneth Drewry, Piyush Makkapati",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/noahjkrueger/326-dubblestuforeo/issues"
+  },
+  "homepage": "https://github.com/noahjkrueger/326-dubblestuforeo#readme"
+}

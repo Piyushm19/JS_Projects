@@ -1,0 +1,24 @@
+version: '3.9'
+services:
+  client:
+    build: client
+    ports:
+      - "3000:3000"
+  comments:
+    build: comments
+    ports:
+      - "4001:4001"
+  eventbus:
+    build: event-bus
+  moderator:
+    build: moderator
+    ports:
+      - "4003:4003"
+  posts:
+    build: posts
+    ports:
+      - "4000:4000"
+  query:
+    build: query
+    ports:
+      - "4002:4002"

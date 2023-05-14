@@ -1,0 +1,127 @@
+version: '3.9'
+services:
+  client:
+    build: client
+    ports:
+      - "3000:3000"
+  posts:
+    image: node
+    ports:
+      - "4000:4000"
+    depends_on:
+      - mongodb_container
+    environment:
+      DATABASE_URL: mongodb://497:KPD@mongodb_container:27017/SSO?directConnection=true&authSource=admin
+    volumes:
+      - $PWD:/usr/app
+    working_dir: /usr/app
+    command: bash -c "npm install && npm run build && npm start"
+  comments:
+    image: node
+    ports:
+      - "4001:4001"
+    depends_on:
+      - mongodb_container
+    environment:
+      DATABASE_URL: mongodb://497:KPD@mongodb_container:27017/SSO?directConnection=true&authSource=admin
+    volumes:
+      - $PWD:/usr/app
+    working_dir: /usr/app
+    command: bash -c "npm install && npm run build && npm start"
+  query:
+    image: node
+    ports:
+      - "4002:4002"
+    depends_on:
+      - mongodb_container
+    environment:
+      DATABASE_URL: mongodb://497:KPD@mongodb_container:27017/SSO?directConnection=true&authSource=admin
+    volumes:
+      - $PWD:/usr/app
+    working_dir: /usr/app
+    command: bash -c "npm install && npm run build && npm start"
+  moderator:
+    image: node
+    ports:
+      - "4003:4003"
+    depends_on:
+      - mongodb_container
+    environment:
+      DATABASE_URL: mongodb://497:KPD@mongodb_container:27017/SSO?directConnection=true&authSource=admin
+    volumes:
+      - $PWD:/usr/app
+    working_dir: /usr/app
+    command: bash -c "npm install && npm run build && npm start"
+  accounts:
+    image: node
+    ports:
+      - "4004:4004"
+    depends_on:
+      - mongodb_container
+    environment:
+      DATABASE_URL: mongodb://497:KPD@mongodb_container:27017/SSO?directConnection=true&authSource=admin
+    volumes:
+      - $PWD:/usr/app
+    working_dir: /usr/app
+    command: bash -c "npm install && npm run build && npm start"
+  eventbus:
+    build: event-bus
+  postlikes:
+    image: node
+    ports:
+      - "4006:4006"
+    depends_on:
+      - mongodb_container
+    environment:
+      DATABASE_URL: mongodb://497:KPD@mongodb_container:27017/SSO?directConnection=true&authSource=admin
+    volumes:
+      - $PWD:/usr/app
+    working_dir: /usr/app
+    command: bash -c "npm install && npm run build && npm start"
+  commentlikes:
+    image: node
+    ports:
+      - "4007:4007"
+    depends_on:
+      - mongodb_container
+    environment:
+      DATABASE_URL: mongodb://497:KPD@mongodb_container:27017/SSO?directConnection=true&authSource=admin
+    volumes:
+      - $PWD:/usr/app
+    working_dir: /usr/app
+    command: bash -c "npm install && npm run build && npm start"
+  profilelikes:
+    image: node
+    ports:
+      - "4008:4008"
+    depends_on:
+      - mongodb_container
+    environment:
+      DATABASE_URL: mongodb://497:KPD@mongodb_container:27017/SSO?directConnection=true&authSource=admin
+    volumes:
+      - $PWD:/usr/app
+    working_dir: /usr/app
+    command: bash -c "npm install && npm run build && npm start"
+  favorites:
+    image: node
+    ports:
+      - "4009:4009"
+    depends_on:
+      - mongodb_container
+    environment:
+      DATABASE_URL: mongodb://497:KPD@mongodb_container:27017/SSO?directConnection=true&authSource=admin
+    volumes:
+      - $PWD:/usr/app
+    working_dir: /usr/app
+    command: bash -c "npm install && npm run build && npm start"
+  mongodb_container:
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: 497
+      MONGO_INITDB_ROOT_PASSWORD: KPD
+    volumes:
+      - $PWD/data/db:/data/db
+    ports:
+      - "27017:27017"
+volumes:
+  mongodb_data_container:

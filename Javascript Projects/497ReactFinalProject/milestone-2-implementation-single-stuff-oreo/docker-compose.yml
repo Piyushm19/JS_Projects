@@ -1,0 +1,91 @@
+version: '3.9'
+services:
+  client:
+    build: client
+    ports:
+      - "3000:3000"
+  posts:
+    build: posts
+    ports:
+      - "4000:4000"
+    depends_on:
+      - mongodb_container
+    environment:
+      DATABASE_URL: mongodb://497:KPD@mongodb_container:27017/SSO?directConnection=true&authSource=admin
+  comments:
+    build: comments
+    ports:
+      - "4001:4001"
+    depends_on:
+      - mongodb_container
+    environment:
+      DATABASE_URL: mongodb://497:KPD@mongodb_container:27017/SSO?directConnection=true&authSource=admin
+  query:
+    build: query
+    ports:
+      - "4002:4002"
+    depends_on:
+      - mongodb_container
+    environment:
+      DATABASE_URL: mongodb://497:KPD@mongodb_container:27017/SSO?directConnection=true&authSource=admin
+  moderator:
+    build: moderator
+    ports:
+      - "4003:4003"
+    depends_on:
+      - mongodb_container
+    environment:
+      DATABASE_URL: mongodb://497:KPD@mongodb_container:27017/SSO?directConnection=true&authSource=admin
+  accounts:
+    build: accounts
+    ports:
+      - "4004:4004"
+    depends_on:
+      - mongodb_container
+    environment:
+      DATABASE_URL: mongodb://497:KPD@mongodb_container:27017/SSO?directConnection=true&authSource=admin
+  eventbus:
+    build: event-bus
+  postlikes:
+    build: post-likes
+    ports:
+      - "4006:4006"
+    depends_on:
+      - mongodb_container
+    environment:
+      DATABASE_URL: mongodb://497:KPD@mongodb_container:27017/SSO?directConnection=true&authSource=admin
+  commentlikes:
+    build: comment-likes
+    ports:
+      - "4007:4007"
+    depends_on:
+      - mongodb_container
+    environment:
+      DATABASE_URL: mongodb://497:KPD@mongodb_container:27017/SSO?directConnection=true&authSource=admin
+  profilelikes:
+    build: profile-likes
+    ports:
+      - "4008:4008"
+    depends_on:
+      - mongodb_container
+    environment:
+      DATABASE_URL: mongodb://497:KPD@mongodb_container:27017/SSO?directConnection=true&authSource=admin
+  favorites:
+    build: favorites
+    ports:
+      - "4009:4009"
+    depends_on:
+      - mongodb_container
+    environment:
+      DATABASE_URL: mongodb://497:KPD@mongodb_container:27017/SSO?directConnection=true&authSource=admin
+  mongodb_container:
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: 497
+      MONGO_INITDB_ROOT_PASSWORD: KPD
+    volumes:
+      - mongodb_data_container:/data/db
+    ports:
+      - "27017:27017"
+volumes:
+  mongodb_data_container:
